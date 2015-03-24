@@ -18,5 +18,11 @@ CREATE TABLE IncomingFlight(flightNumber CHAR(5) FOREIGN KEY REFERENCES Flight(n
 				
 CREATE TABLE OutgoingFlight(flightNumber CHAR(5) FOREIGN KEY REFERENCES Flight(number),
 			plannedDeparture DATE);
-			 
+
+//Insert Arrivals and Departures create table statements
+
+CREATE TABLE Outgoing(flightNumber CHAR(5) FOREIGN KEY REFERENCES OutgoingFlight(number),
+			departureID INT FOREIGN KEY REFERENCES Departures(id));
 			
+CREATE TABLE Incoming(flightNumber CHAR(5) FOREIGN KEY REFERENCES IncomingFlight(number),
+			arrivalID INT FOREIGN KEY REFERENCES Arrivals(id));
