@@ -70,3 +70,55 @@ CREATE TABLE Senior(
 	age INT,
 	FOREIGN KEY passportNumber REFERENCES Passenger(passportNumber)
 );
+
+CREATE TABLE Departures (
+    gate VARCHAR(8),
+    departDate DATE,
+    id INT AUTO_INCREMENT
+);
+
+CREATE TABLE Arrivals (
+    gate VARCHAR(8),
+    arriveDate DATE,
+    id INT AUTO_INCREMENT
+);
+
+
+CREATE TABLE DepartureStatus (
+    info VARCHAR(255),
+    time DATE,
+    id INT AUTO_INCREMENT
+);
+
+CREATE TABLE ArrivalStatus (
+    info VARCHAR(255),
+    time DATE,
+    id INT AUTO_INCREMENT
+);
+
+CREATE TABLE DepartureHasStatus (
+    statusId INT FOREIGN KEY REFERENCES DepartureStatus(id),
+    departureId INT FOREIGN KEY REFERENCES Departures(id)
+);
+
+CREATE TABLE ArrivalHasStatus (
+    statusId INT FOREIGN KEY REFERENCES DepartureStatus(id),
+    arrivalId INT FOREIGN KEY REFERENCES Arrivals(id)
+);
+
+CREATE TABLE onDepart (
+    departureId INT FOREIGN KEY REFERENCES Departures(id),
+    passenger INT FOREIGN KEY REFERENCES Passenger(passportnum)
+);
+
+CREATE TABLE onArrival (
+    arrivalId INT FOREIGN KEY REFERENCES Arrivals(id),
+    passenger INT FOREIGN KEY REFERENCES Passenger(passportnum)
+);
+
+CREATE TABLE Baggage (
+    flightNum CHAR(5) FOREIGN KEY REFERENCES Flight(number),
+    weight INT,
+    passenger INT FOREIGN KEY REFERENCES Passenger(passportnum),
+    id INT AUTO_INCREMENT
+);
