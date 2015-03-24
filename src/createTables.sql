@@ -26,3 +26,47 @@ CREATE TABLE Outgoing(flightNumber CHAR(5) FOREIGN KEY REFERENCES OutgoingFlight
 			
 CREATE TABLE Incoming(flightNumber CHAR(5) FOREIGN KEY REFERENCES IncomingFlight(number),
 			arrivalID INT FOREIGN KEY REFERENCES Arrivals(id));
+
+
+CREATE TABLE Passenger(
+	passportNumber INT NOT NULL,
+	name VARCHAR(50),
+	dateOfBirth DATE,
+	placeOfBirth VARCHAR(50),
+	citizenship CHAR(3),
+	PRIMARY KEY(passportNumber)
+);
+
+CREATE TABLE FirstClass(
+	passportNumber INT NOT NULL,
+	cost DECIMAL(3,2),
+	meal VARCHAR(20),
+	FOREIGN KEY passportNumber REFERENCES Passenger(passportNumber)
+);
+
+CREATE TABLE Economy(
+	passportNumber INT NOT NULL,
+	cost DECIMAL(3,2),
+	FOREIGN KEY passportNumber REFERENCES Passenger(passportNumber)
+);
+
+CREATE TABLE Infant(
+	passportNumber INT NOT NULL,
+	cost DECIMAL(3,2),
+	age INT,
+	FOREIGN KEY passportNumber REFERENCES Passenger(passportNumber)
+);
+
+CREATE TABLE SpecialNeeds(
+	passportNumber INT NOT NULL,
+	cost DECIMAL(3,2),
+	equipment VARCHAR(20),
+	FOREIGN KEY passportNumber REFERENCES Passenger(passportNumber)
+);
+
+CREATE TABLE Senior(
+	passportNumber INT NOT NULL,
+	cost DECIMAL(3,2),
+	age INT,
+	FOREIGN KEY passportNumber REFERENCES Passenger(passportNumber)
+);
