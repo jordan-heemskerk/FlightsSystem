@@ -17,3 +17,15 @@ git clone https://github.com/jordan-heemskerk/FlightsSystem
 cd FlightsSystem
 ./scripts/init.sh
 ```
+5. Startup tomcat
+```
+apache-tomcat-6.0.18/bin/startup.sh
+```
+6. Build and deploy our files
+```
+make deploy
+```
+7. If you make changes, to see their effects, just deploy again
+```
+make deploy
+```
