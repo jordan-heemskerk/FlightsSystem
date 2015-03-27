@@ -25,6 +25,10 @@ Build and deploy our files
 ```
 make deploy
 ```
+You're up and running on 8085
+```
+firefox http://localhost:8085/
+```
 If you make changes, to see their effects, just deploy again
 ```
 make deploy
