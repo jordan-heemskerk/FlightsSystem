@@ -27,7 +27,7 @@ public class ConnectionManager {
         else { //No one left in the stack, create a new one
             try {
                 conn = DriverManager.getConnection 			 
-			("jdbc:oracle:thin:@localhost:1521:orcl", "flightsysten", "flightsystempass"); 
+			("jdbc:oracle:thin:@localhost:1521/orcl", "flightsystem", "flightsystempass"); 
             } catch (SQLException ex) { 
                 System.out.println("SQLException: " + ex); 
             }
