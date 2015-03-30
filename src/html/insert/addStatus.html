@@ -1,0 +1,17 @@
+<html>
+  <head>
+    <title>Add a flight status</title>
+  </head>
+  <body>
+    <div>
+    <form method="GET" action="http://localhost:8085/servlet/AddStatus">
+      Status type: <input type="radio" name="type" value="departure" checked/>Departure
+			<input type="radio" name="type" value="arrival"/>Arrival<br />
+      Status id: <input type="text" name="id" value="" /><br />
+      Status info: <input type="text" name="info" value="" /><br />
+      <input type="submit" value="Add Status" /> <br />
+    </form>
+    </div>
+
+  </body>
+  </html>
