@@ -147,3 +147,15 @@ CREATE TABLE onArrival
   );
 
 
+CREATE TABLE Baggage
+  (
+    flightNumber INT,
+    passenger INT,
+    weight INT,
+    CONSTRAINT fk_baggage
+      FOREIGN KEY (flightNumber)
+      REFERENCES Flight(num),
+      FOREIGN KEY (passenger)
+      REFERENCES Passenger(passportNumber)
+
+  );
