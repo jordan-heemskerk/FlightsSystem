@@ -149,7 +149,7 @@ CREATE TABLE onArrival
 
 CREATE TABLE Baggage
   (
-    flightNumber INT,
+    flightNumber CHAR(5),
     passenger INT,
     weight INT,
     CONSTRAINT fk_baggage
