@@ -129,7 +129,7 @@ CREATE TABLE DepartureHasStatus
 
 CREATE TABLE ArrivalHasStatus
   (
-     statusId  INT REFERENCES DepartureStatus(id),
+     statusId  INT REFERENCES ArrivalStatus(id),
      time DATE,
      arrivalId INT REFERENCES Arrivals(arriveid)
   );
