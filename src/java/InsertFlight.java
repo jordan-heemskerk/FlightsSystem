@@ -38,13 +38,20 @@ public class InsertFlight extends HttpServlet {
     String outgoing = "INSERT INTO OutgoingFlight (num, planneddeparture) " +
                       "VALUES ( '" + num + "'," +
                       "" + formatTime(time) + ")";
-   
+    
+    String operates = "INSERT INTO Operates (airlinecode, planemodelcode, flightnumber) " +
+                      "VALUES ('" + airline +"'," +
+                      "'" + plane + "',"+
+                      "'" + num + "')"; 
+
+ 
     Connection conn = ConnectionManager.getInstance().getConnection();
 
     String resp = "";
     try {
         Statement st = conn.createStatement();
         st.executeUpdate(flights);
+        st.executeUpdate(operates);
         if (origin.equals("incoming")) {
             st.executeUpdate(incoming);
         } 
