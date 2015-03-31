@@ -21,33 +21,45 @@ public class Status extends HttpServlet {
  
     Connection conn = ConnectionManager.getInstance().getConnection();
 
-    String sql = " SELECT Departures.gate, Departures.departDate as TheDate, DepartureInfo.info" +
+    String sql = " SELECT * FROM ( SELECT Departures.gate, Departures.departDate as TheDate, DepartureInfo.info, departid as id, time" +
 " FROM Departures" +
-" JOIN (SELECT DepartureHasStatus.departureId as departureId, DepartureStatus.info as info" +
+" JOIN (SELECT DepartureHasStatus.departureId as departureId, DepartureHasStatus.time as time, DepartureStatus.info as info" +
      " FROM DepartureStatus " +
      " JOIN DepartureHasStatus " +
      " ON DepartureStatus.id = DepartureHasStatus.statusId) DepartureInfo" +
 " ON Departures.departId = DepartureInfo.departureId " +
 " WHERE ABS(departDate - " + time_func + ") < 0.15" +
 " UNION " +
-" SELECT Arrivals.gate, Arrivals.arriveDate as TheDate, ArrivalInfo.info " +
+" SELECT Arrivals.gate, Arrivals.arriveDate as TheDate, ArrivalInfo.info, arriveid as id, time " +
 " FROM Arrivals " +
-" JOIN (SELECT ArrivalHasStatus.arrivalId as arrivalId, ArrivalStatus.info as info " +
+" JOIN (SELECT ArrivalHasStatus.arrivalId as arrivalId, ArrivalHasStatus.time as time, ArrivalStatus.info as info " +
     "  FROM ArrivalStatus " +
      " JOIN ArrivalHasStatus " +
     "  ON ArrivalStatus.id = ArrivalHasStatus.statusId) ArrivalInfo " +
  " ON Arrivals.arriveId = ArrivalInfo.arrivalId " +
- " WHERE ABS(Arrivals.arriveDate - " + time_func + ") < 0.15";
+ " WHERE ABS(Arrivals.arriveDate - " + time_func + ") < 0.15) T1"+ 
+" LEFT JOIN "+
+" (SELECT FLIGHTNUMBER, DepartureId as did FROM outgoing "+
+" UNION " +
+" SELECT FLIGHTNUMBER, ArrivalId as did FROM incoming) T2 " +
+" ON T1.id = T2.did "+
+" LEFT JOIN Flight on T2.FLIGHTNUMBER = Flight.num "+
+" LEFT JOIN Operates on T2.FLIGHTNUMBER = Operates.FlightnUmber ";
+ 
 
-    String resp = "<html><head><title>Find Flights Status</title></head><body><table border='1'><tr><td>Gate</td><td>Date</td><td>Status</td></tr>";
+    String resp = "<html><head><title>Find Flights Status</title></head><body><table border='1'><tr><td>Flight</td><td>From</td><td>To</td><td>Gate</td><td>Date</td><td>Status</td></tr>";
     try {
         Statement st = conn.createStatement();
         ResultSet res = st.executeQuery(sql);
 
         while(res.next()) {
-            resp += "<tr><td>" + res.getString("Gate") + "</td>" +
+            resp += "<tr>" +
+                     "<td>" + res.getString("airlinecode") + res.getString("flightnumber") + "</td>" +
+                    "<td>" + res.getString("src") + "</td>" +
+                    "<td>" + res.getString("destination") + "</td>" +
+                     "<td>" + res.getString("Gate") + "</td>" +
                      "<td>" + res.getString("TheDate") + "</td>" + 
-                     "<td>" + res.getString("Info") + "</td></tr>";
+                     "<td>" + res.getString("Info") + " (" + res.getString("time") + ")" + " </td></tr>";
         }
 
         st.close();
