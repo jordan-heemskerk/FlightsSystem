@@ -157,5 +157,4 @@ CREATE TABLE Baggage
       REFERENCES Flight(num),
       FOREIGN KEY (passenger)
       REFERENCES Passenger(passportNumber)
-
   );
