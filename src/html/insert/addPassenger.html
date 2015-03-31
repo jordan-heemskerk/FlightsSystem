@@ -1,0 +1,24 @@
+<html> 
+  <head>
+    <title>Add a flight status</title>
+  </head>
+  <body>
+    <div>
+    <form method="GET" action="http://localhost:8085/servlet/AddPassenger">
+      Passenger Passport Number: <input type="text" name="passportnumber" value="" /><br />
+      Passenger Passenger Name: <input type="text" name="passengername" value="" /><br />
+      Passenger Date of birth (YYYY/MM/DD): <input type="text" name="dateofbirth" value="" /><br />
+      Passenger Place of birth: <input type="text" name="placeofbirth" value="" /><br />
+      Passenger Citizenship: <input type="text" name="citizenship" value="" /><br />
+      Passenger Type: <br /><input type="checkbox" name="type" value="senior"/> Senior, if selected please include age:<input type="text" name="seniorage" value="" /><br />
+			<input type="checkbox" name="type" value="infant"/> Infant, if selected please include age:<input type="text" name="infantage" value="" /><br />
+			<input type="checkbox" name="type" value="specialneeds"/> Special Needs, if selected please include equipment:<input type="text" name="equipment" value="" /><br />
+			<input type="checkbox" name="type" value="economy"/> Economy<br />
+			<input type="checkbox" name="type" value="firstclass"/> Firstclass, if selected please include meal choice:<input type="text" name="meal" value="" /><br />
+      <input type="submit" value="Add Status" /> <br />
+    </form>
+    </div>
+
+  </body>
+  </html>
+
