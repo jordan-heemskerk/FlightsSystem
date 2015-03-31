@@ -82,30 +82,30 @@ CREATE TABLE Passenger
 
 CREATE TABLE FirstClass(
 	passportNumber INT REFERENCES Passenger(passportNumber),
-	cost DECIMAL(3,2),
+	cost INT,
 	meal VARCHAR(20)
 );
 
 CREATE TABLE Economy(
 	passportNumber INT REFERENCES Passenger(passportNumber),
-	cost DECIMAL(3,2)
+	cost INT
 );
 
 CREATE TABLE Infant(
 	passportNumber INT REFERENCES Passenger(passportNumber),
-	cost DECIMAL(3,2),
+	cost INT,
 	age INT
 );
 
 CREATE TABLE SpecialNeeds(
 	passportNumber INT REFERENCES Passenger(passportNumber),
-	cost DECIMAL(3,2),
+	cost INT,
 	equipment VARCHAR(20)
 );
 
 CREATE TABLE Senior(
 	passportNumber INT REFERENCES Passenger(passportNumber),
-	cost DECIMAL(3,2),
+	cost INT,
 	age INT
 );
 
