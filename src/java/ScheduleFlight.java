@@ -38,7 +38,7 @@ public class ScheduleFlight extends HttpServlet {
             incoming = true;
             sql = "SELECT plannedArrival FROM IncomingFlight WHERE num='" + flight + "'";  
         } else {
-            sql = "SELECT plannedDeparture FROM OutgoingFlight num='" + flight + "'";
+            sql = "SELECT plannedDeparture FROM OutgoingFlight WHERE num='" + flight + "'";
         }
     
         Connection conn = ConnectionManager.getInstance().getConnection();
@@ -94,10 +94,10 @@ public class ScheduleFlight extends HttpServlet {
                "" + formatDate(date) + "," +
                "" + id + ")";
     } else {
-        association = "INSERT INTO Outgoing (flightnumber, departid) " +
+        association = "INSERT INTO Outgoing (flightnumber, departureid) " +
                       "VALUES ('" + flightnum + "'," +
                       "'" + id + "')";
-        info = "INSERT INTO Departures (gate, arrivedate, departid) " +
+        info = "INSERT INTO Departures (gate, departdate, departid) " +
                "VALUES ('" + gate + "'," +
                "" + formatDate(date) + "," +
                "" + id + ")";
