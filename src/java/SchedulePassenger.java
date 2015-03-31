@@ -72,7 +72,7 @@ public class SchedulePassenger extends HttpServlet {
         Statement st = conn.createStatement();
         st.executeUpdate(on);
         
-        if (bag.equals("on")) st.executeUpdate(baggage);
+        if (bag != null) st.executeUpdate(baggage);
 
         st.close();
 
