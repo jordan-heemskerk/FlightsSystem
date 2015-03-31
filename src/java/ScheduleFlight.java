@@ -55,10 +55,10 @@ public class ScheduleFlight extends HttpServlet {
 
 
         } catch (SQLException e) {
-            return false;
+            return null;
         }
 
-
+        return null;
     }
 
     private String formatDate(String date) {
@@ -80,7 +80,7 @@ public class ScheduleFlight extends HttpServlet {
     String date = request.getParameter("date");
    
     String association = "";
-    String info = "";i
+    String info = "";
 
     String time = getTime(flightnum);
     
